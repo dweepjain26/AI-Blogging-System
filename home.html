@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@1,600&family=Tajawal&family=Slabo+27px&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            background: rgb(23, 122, 236);
+            padding: 20px;
+            text-align: center;
+            background-image: url("home_bg1.jpg");
+            background-size: cover;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+            position: relative;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 50px;
+        }
+        .a{
+            margin-top: 10px;
+            margin-bottom: 25px;
+            font-size: 30px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        #username{
+            font-family: 'Crimson text';
+            font-style:italic;
+            font-weight: 700;
+        }
+        .btn {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .blog-form {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 97%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .blog-list {
+            background: rgb(232, 235, 227);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        
+        .logout-btn {
+            background: #ff3b3b;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .logout-btn:hover {
+            background: darkred;
+            transform: scale(1.05);
+        }
+        
+        .blog-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 280px;
+        }
+        
+        
+        .blog-item h3{
+            text-transform: uppercase;
+            font-family: 'Georgia', serif;
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+        }
+        
+        .blog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-preview {
+            max-width: 300px;
+            max-height: 200px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 15.15%;
+            align-items: center;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            text-align: justify;
+            text-decoration: none;
+            font-size: 40;
+            background-color: rgb(158, 174, 158);
+            padding: 5px;
+            padding-left: 70px;
+            padding-right: 70px;
+
+        }
+        
+        .nav-tab {
+            padding: 8px 15px;
+            background: #f1f1f1;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            align-items: center;
+            font-family: 'Crimson text', serif;
+            font-size: 14px;
+        }
+        
+        .nav-tab.active {
+            background: #007BFF;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .author-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .ai-image-form {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #007BFF;
+            animation: spin 1s ease-in-out infinite;
+            margin: 10px auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #blogDetailView {
+            display: none;
+            background: rgb(241, 253, 238);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            margin: 20px auto;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .blog-header {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .blog-title {
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-family: 'Slabo 27px', serif;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .blog-content {
+            line-height: 1.9;
+            font-size: 17px;
+            text-align: justify;
+            white-space: pre-wrap;
+            padding: 0 20px;
+            margin: 0 auto;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .blog-detail-image {
+            max-width: 100%;
+            max-height: 450px;
+            object-fit: contain;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .blog-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .like-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .like-btn.liked {
+            color: #e74c3c;
+        }
+
+        .back-btn {
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+
+        #listView {
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        let currentBlogId = null;
+        let currentBlogContent = null;
+        async function fetchHome() {
+            const token = localStorage.getItem("token");
+            const username = localStorage.getItem("username"); 
+            if (!token) {
+                alert("You are not logged in!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const response = await fetch("http://localhost:5000/home", {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
+            const data = await response.json();
+            if (data.error) {
+                alert(data.error);
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("username").textContent = localStorage.getItem("username");
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            window.location.href = "login.html";
+        }
+
+        function showBlogForm() {
+            document.getElementById("blogForm").style.display = "block";
+        }
+
+        function showImageUpload() {
+            document.getElementById("imageInput").click();
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("imagePreview").src = e.target.result;
+                    document.getElementById("imagePreview").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function showAiImageForm() {
+            document.getElementById("aiImageForm").style.display = "block";
+        }
+        
+        async function generateAiImage() {
+            const imagePrompt = document.getElementById("imagePrompt").value.trim();
+            const token = localStorage.getItem("token");
+            
+            if (!token || !imagePrompt) {
+                alert("Please log in and enter an image description.");
+                return;
+            }
+            
+            // Show loading spinner
+            document.getElementById("loadingSpinner").style.display = "block";
+            document.getElementById("generateBtn").disabled = true;
+            
+            try {
+                const response = await fetch("http://localhost:5000/generate-image", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ prompt: imagePrompt })
+                });
+                
+                const data = await response.json();
+                
+                // Hide loading spinner
+                document.getElementById("loadingSpinner").style.display = "none";
+                document.getElementById("generateBtn").disabled = false;
+                
+                if (response.ok) {
+                    // Set the generated image as the selected image
+                    document.getElementById("imagePreview").src = `http://localhost:5000/uploads/${data.filename}`;
+                    document.getElementById("imagePreview").style.display = "block";
+                    
+                    // Store the filename to use it when posting the blog
+                    document.getElementById("aiGeneratedFilename").value = data.filename;
+                    
+                    // Hide the AI image form
+                    document.getElementById("aiImageForm").style.display = "none";
+                    
+                    alert("Image generated successfully!");
+                } else {
+                    alert(data.error || "Failed to generate image!");
+                }
+            } catch (error) {
+                console.error("Error generating AI image:", error);
+                alert("Something went wrong!");
+                document.getElementById("loadingSpinner").style.display = "none";
+                document.getElementById("generateBtn").disabled = false;
+            }
+        }
+        
+        async function postBlog() {
+            const title = document.getElementById("blogTitle").value.trim();
+            const content = document.getElementById("blogContent").value.trim();
+            const imageFile = document.getElementById("imageInput").files[0];
+            const aiGeneratedFilename = document.getElementById("aiGeneratedFilename").value;
+            const token = localStorage.getItem("token");
+
+            if (!token || !title || !content) {
+                alert("Please log in and fill both title and content before posting.");
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("content", content);
+            if (imageFile) {
+                formData.append("image", imageFile);
+            } else if (aiGeneratedFilename) {
+                formData.append("aiGeneratedImage", aiGeneratedFilename);
+            }
+            
+            try {
+                const response = await fetch("http://localhost:5000/blogs", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    document.getElementById("blogForm").style.display = "none";
+                    document.getElementById("blogTitle").value = "";
+                    document.getElementById("blogContent").value = "";
+                    document.getElementById("imageInput").value = "";
+                    document.getElementById("imagePreview").style.display = "none";
+                    document.getElementById("aiGeneratedFilename").value = "";
+                    fetchBlogs();
+                    fetchMyBlogs();
+                } else {
+                    alert(data.error || "Failed to post blog!");
+                }
+            } catch (error) {
+                console.error("Error posting blog:", error);
+                alert("Something went wrong!");
+            }
+        }
+
+        async function saveDraft() {
+            const title = document.getElementById("blogTitle").value.trim();
+            const content = document.getElementById("blogContent").value.trim();
+            const token = localStorage.getItem("token");
+
+            if (!token || !content) {
+                alert("Please log in and fill content to save a draft.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/drafts", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ title, content })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    fetchMyDrafts();
+                } else {
+                    alert(data.error || "Failed to save draft!");
+                }
+            } catch (error) {
+                console.error("Error saving draft:", error);
+                alert("Something went wrong!");
+            }
+        }
+        async function fetchAllBlogs() {
+        try {
+            const response = await fetch("http://localhost:5000/all-blogs");
+            const data = await response.json();
+            document.getElementById("allBlogs").innerHTML = data.map(blog => 
+                `<div class="blog-item" onclick="viewBlog(${blog.id})">
+                    <div class="author-info">By: ${blog.username}</div>
+                    <h3>${blog.title}</h3>
+                    ${blog.image_url ? `<img src="http://localhost:5000/uploads/${blog.image_url}" alt="Blog Image" class="blog-image">` : ''}
+                </div>`
+            ).join("");
+        } catch (error) {
+            console.error("Error fetching all blogs:", error);
+        }
+    }
+        async function fetchBlogs() {
+            try {
+                const latestResponse = await fetch("http://localhost:5000/latest-blogs");
+                const latestData = await latestResponse.json();
+                document.getElementById("latestBlogs").innerHTML = latestData.map(blog => 
+                    `<div class="blog-item" onclick="viewBlog(${blog.id})">
+                        <div class="author-info">By: ${blog.username}</div>
+                        <h3>${blog.title}</h3>
+                        ${blog.image_url ? `<img src="http://localhost:5000/uploads/${blog.image_url}" alt="Blog Image" class="blog-image">` : ''}
+                    </div>`
+                ).join("");
+
+                const trendingResponse = await fetch("http://localhost:5000/trending-blogs");
+                const trendingData = await trendingResponse.json();
+                document.getElementById("trendingBlogs").innerHTML = trendingData.map(blog => 
+                    `<div class="blog-item" onclick="viewBlog(${blog.id})">
+                        <div class="author-info">By: ${blog.username}</div>
+                        <h3>${blog.title}</h3>
+                        ${blog.image_url ? `<img src="http://localhost:5000/uploads/${blog.image_url}" alt="Blog Image" class="blog-image">` : ''}
+                    </div>`
+                ).join("");
+            } catch (error) {
+                console.error("Error fetching blogs:", error);
+            }
+        }
+        
+        async function fetchMyBlogs() {
+            const token = localStorage.getItem("token");
+            if (!token) return;
+            
+            try {
+                const response = await fetch("http://localhost:5000/my-blogs", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                document.getElementById("myBlogs").innerHTML = data.map(blog => 
+                    `<div class="blog-item" onclick="viewBlog(${blog.id})">
+                        <h3>${blog.title}</h3>
+                        ${blog.image_url ? `<img src="http://localhost:5000/uploads/${blog.image_url}" alt="Blog Image" class="blog-image">` : ''}
+                        <div class="author-info">Posted: ${new Date(blog.created_at).toLocaleDateString()}</div>
+                    </div>`
+                ).join("");
+            } catch (error) {
+                console.error("Error fetching my blogs:", error);
+            }
+        }
+        
+        async function fetchMyDrafts() {
+            const token = localStorage.getItem("token");
+            if (!token) return;
+            
+            try {
+                const response = await fetch("http://localhost:5000/my-drafts", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                document.getElementById("myDrafts").innerHTML = data.map(draft => 
+                    `<div class="blog-item">
+                        <h3>${draft.title || "Untitled Draft"}</h3>
+                        <p>${draft.content.substring(0, 100)}${draft.content.length > 100 ? '...' : ''}</p>
+                        <div class="author-info">Last edited: ${new Date(draft.created_at).toLocaleDateString()}</div>
+                    </div>`
+                ).join("");
+            } catch (error) {
+                console.error("Error fetching my drafts:", error);
+            }
+        }
+
+        async function getAiSuggestion() {
+            const blogContent = document.getElementById("blogContent").value.trim();
+            if (!blogContent) {
+                alert("Please enter some text for AI suggestions.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/ai-suggestions", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: blogContent })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById("aiSuggestion").innerText = "AI Suggestion: " + data.suggestion;
+                } else {
+                    alert(data.error || "Failed to fetch AI suggestion!");
+                }
+            } catch (error) {
+                console.error("Error fetching AI suggestion:", error);
+                alert("Something went wrong!");
+            }
+        }
+        
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Deactivate all tabs
+            const tabs = document.getElementsByClassName("nav-tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add("active");
+            
+            // Activate the clicked tab
+            document.getElementById(tabName + "-tab").classList.add("active");
+            
+            // Load content for the selected tab
+            if (tabName === "home") {
+            fetchAllBlogs();
+        } else if (tabName === "my-blogs") {
+            fetchMyBlogs();
+        } else if (tabName === "my-drafts") {
+            fetchMyDrafts();
+        }
+        }
+        
+        // Function to view a specific blog
+        async function viewBlog(blogId) {
+            try {
+                // Increment view count
+                await fetch(`http://localhost:5000/blog/${blogId}/view`, {
+                    method: "POST"
+                });
+                
+                // Fetch blog details
+                const response = await fetch(`http://localhost:5000/blog/${blogId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch blog details');
+                }
+                
+                const blog = await response.json();
+                currentBlogId = blog.id;
+                currentBlogContent = blog.content; 
+                // Hide the list view and show detail view
+                document.getElementById("listView").style.display = "none";
+                document.getElementById("blogDetailView").style.display = "block";
+                
+
+                // Fill in blog details
+                document.getElementById("detailBlogTitle").textContent = blog.title;
+                document.getElementById("blogAuthor").textContent = blog.username;
+                document.getElementById("blogDate").textContent = new Date(blog.created_at).toLocaleDateString();
+                document.getElementById("detailBlogContent").textContent = blog.content;
+                document.getElementById("blogViews").textContent = blog.views;
+                document.getElementById("blogLikes").textContent = blog.likes;
+                
+                // Display image if available
+                const imageContainer = document.getElementById("blogImageContainer");
+                if (blog.image_url) {
+                    document.getElementById("blogImage").src = `http://localhost:5000/uploads/${blog.image_url}`;
+                    imageContainer.style.display = "block";
+                } else {
+                    imageContainer.style.display = "none";
+                }
+                
+                // Check if the user has liked this blog and update like button
+                checkLikeStatus(blog.id);
+                
+            } catch (error) {
+                console.error("Error fetching blog details:", error);
+                alert("Error loading blog details");
+            }
+        }
+        
+        // Function to check if the current user has liked the blog
+        async function checkLikeStatus(blogId) {
+            const token = localStorage.getItem("token");
+            if (!token) return;
+            
+            try {
+                const response = await fetch(`http://localhost:5000/blog/${blogId}/liked`, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                const likeButton = document.getElementById("likeButton");
+                
+                if (data.liked) {
+                    likeButton.innerHTML = "❤️"; // Filled heart
+                    likeButton.classList.add("liked");
+                    likeButton.classList.remove("not-liked");
+                } else {
+                    likeButton.innerHTML = "♡"; // Empty heart
+                    likeButton.classList.add("not-liked");
+                    likeButton.classList.remove("liked");
+                }
+            } catch (error) {
+                console.error("Error checking like status:", error);
+            }
+        }
+        
+        // Function to like/unlike a blog
+        async function toggleLike() {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("Please log in to like blogs");
+                return;
+            }
+            
+            try {
+                const response = await fetch(`http://localhost:5000/blog/${currentBlogId}/like`, {
+                    method: "POST",
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+                if (response.ok) {
+                    // Update the like count and heart icon
+                    document.getElementById("blogLikes").textContent = data.likes;
+                    
+                    const likeButton = document.getElementById("likeButton");
+                    if (data.liked) {
+                        likeButton.innerHTML = "❤️"; // Filled heart
+                        likeButton.classList.add("liked");
+                        likeButton.classList.remove("not-liked");
+                    } else {
+                        likeButton.innerHTML = "♡"; // Empty heart
+                        likeButton.classList.add("not-liked");
+                        likeButton.classList.remove("liked");
+                    }
+                } else {
+                    alert(data.error || "Failed to update like status");
+                }
+            } catch (error) {
+                console.error("Error toggling like:", error);
+                alert("Something went wrong");
+            }
+        }
+        
+        
+
+        // Function to go back to the blog list view
+        function backToList() {
+            document.getElementById("blogDetailView").style.display = "none";
+            document.getElementById("listView").style.display = "block";
+            currentBlogId = null;
+            currentBlogContent = null;
+        }
+        
+        window.onload = function() {
+            fetchHome();
+            fetchBlogs();
+            switchTab("home");
+        };
+    </script> 
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome to InsightForge AI Blogging Platform</h2>
+        <p>Welcome, <span id="username"></span>!</p>
+
+        <button class="btn logout-btn" onclick="logout()">Log out</button>
+
+        <!-- Create Blog Button -->
+        <button class="btn" onclick="showBlogForm()">Create Blog</button>
+
+        <!-- Blog Writing Section -->
+        <div id="blogForm" class="blog-form">
+            <input type="text" id="blogTitle" placeholder="Enter blog title..."><br>
+            <textarea id="blogContent" placeholder="Write your blog here..."></textarea><br>
+            <button class="btn" onclick="postBlog()">Post</button>
+            <button class="btn" onclick="showImageUpload()">Add Image</button>
+            <button class="btn" onclick="showAiImageForm()">Generate AI Image</button>
+            <input type="file" id="imageInput" accept="image/*" style="display:none;" onchange="previewImage(event)">
+            <input type="hidden" id="aiGeneratedFilename" value="">
+            <img id="imagePreview" class="image-preview">
+            <button class="btn" onclick="saveDraft()">Save as Draft</button>
+            <button class="btn" onclick="getAiSuggestion()">Get AI Suggestion</button>
+            <p id="aiSuggestion"></p>
+            
+            <!-- AI Image Generation Form -->
+            <div id="aiImageForm" class="ai-image-form">
+                <h4>Generate AI Image</h4>
+                <textarea id="imagePrompt" placeholder="Describe the image you want to generate..."></textarea><br>
+                <button id="generateBtn" class="btn" onclick="generateAiImage()">Generate</button>
+                <div id="loadingSpinner" class="loading-spinner"></div>
+            </div>
+        </div>
+
+        <!-- Main content container -->
+        <div id="listView">
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button id="home-tab" class="nav-tab active" onclick="switchTab('home')">Home</button>
+                <button id="latest-blogs-tab" class="nav-tab" onclick="switchTab('latest-blogs')">Latest Blogs</button>
+                <button id="trending-blogs-tab" class="nav-tab" onclick="switchTab('trending-blogs')">Trending Blogs</button>
+                <button id="my-blogs-tab" class="nav-tab" onclick="switchTab('my-blogs')">My Blogs</button>
+                <button id="my-drafts-tab" class="nav-tab" onclick="switchTab('my-drafts')">My Drafts</button>
+            </div>
+            <div id="home" class="tab-content section active">
+                <h3 class="a">Published Blogs</h3>
+                <div class="blog-list" id="allBlogs"></div>
+            </div>
+            <!-- Tab Content -->
+            <div id="latest-blogs" class="tab-content section">
+                <h3 class="a">Latest Blogs</h3>
+                <div class="blog-list" id="latestBlogs"></div>
+            </div>
+
+            <div id="trending-blogs" class="tab-content section">
+                <h3 class="a">Trending Blogs</h3>
+                <div class="blog-list" id="trendingBlogs"></div>
+            </div>
+            
+            <div id="my-blogs" class="tab-content section">
+                <h3 class="a">My Blogs</h3>
+                <div class="blog-list" id="myBlogs"></div>
+            </div>
+            
+            <div id="my-drafts" class="tab-content section">
+                <h3 class="a">My Drafts</h3>
+                <div class="blog-list" id="myDrafts"></div>
+            </div>
+        </div>
+
+        <!-- Blog Detail View -->
+        <div id="blogDetailView">
+            <button class="btn back-btn" onclick="backToList()">&larr; Back to Blogs</button>
+            
+            <div class="blog-header">
+                <h1 id="detailBlogTitle" class="blog-title"></h1>
+                <div class="blog-meta">
+                    <div>
+                        By <span id="blogAuthor"></span> | 
+                        <span id="blogDate"></span>
+                    </div>
+                    <div class="blog-actions">
+                        <div>
+                            <i class="bi bi-eye"></i> 
+                            <span id="blogViews"></span> views
+                        </div>
+                        <div>
+                            <button id="likeButton" class="like-btn" onclick="toggleLike()">♡</button>
+                            <span id="blogLikes"></span> likes
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="blogImageContainer">
+                <img id="blogImage" class="blog-detail-image" alt="Blog image">
+            </div>
+            
+            <div id="detailBlogContent" class="blog-content"></div>
+            
+        </div>
+    </div>
+</body>
+</html>
